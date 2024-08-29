@@ -19,24 +19,17 @@ This project is a simple weather service application built with Spring Boot. It 
 
 ### Setup
 
-1. **Clone the repository:** 
-    git clone https://github.com/yourusername/weather-service.git
-    cd weather-service
-    Update API Key:
-Replace the access_key in WeatherService with your WeatherStack API key.
+1. **Clone the repository:**
+   git clone https://github.com/Bharani0012/weather-service.git
+2. **Update API Key:**
+    Replace the access_key in WeatherService with your WeatherStack API key.
 
-   private static final String WEATHER_STACK_API_URL = "http://api.weatherstack.com/current?access_key=your_api_key_here&query=%s";
+    private static final String WEATHER_STACK_API_URL = "http://api.weatherstack.com/current?access_key=your_api_key_here&query=%s";
 
 Build the project:
-
-bash
-
-mvn clean install
+    mvn clean install
 
 Run the application:
-
-bash
-
     mvn spring-boot:run
 
 API Endpoints
