@@ -20,15 +20,12 @@ public class WeatherService {
         try {
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
             HttpStatusCode statusCode = responseEntity.getStatusCode();
-
             HttpStatus httpStatus = HttpStatus.resolve(statusCode.value());
 
             if (httpStatus == HttpStatus.OK) {
                 String responseBody = responseEntity.getBody();
-
                 JSONObject jsonResponse = new JSONObject(responseBody);
                 return jsonResponse.toString(4); // Indent with 4 spaces
-
             } else {
                 return String.format("Error: Received HTTP %d %s from WeatherStack API", httpStatus.value(), httpStatus.getReasonPhrase());
             }

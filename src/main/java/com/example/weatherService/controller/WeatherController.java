@@ -12,7 +12,7 @@ public class WeatherController {
     @Autowired
     private WeatherService weatherService;
 
-    //Tomorrow.io api is used to get the weather
+    //WeatherStack api is used to get the weather
 
     @GetMapping("/weather/get-weather")
     public String getWeatherByCoordinates(@RequestParam String location) {
