@@ -1,69 +1,57 @@
-Weather Service
 
-A Spring Boot application that provides weather forecasts based on user input. You can fetch weather data using either coordinates or city names. The application uses Tomorrow.io for weather data and OpenCage for geocoding city names.
-Features
+# Weather Service
 
-    Weather by Coordinates: Fetch weather data using latitude and longitude.
-    Weather by City: Fetch weather data by converting city names to coordinates and then using the Tomorrow.io API.
+This project is a simple weather service application built with Spring Boot. It provides weather information based on geographical coordinates using the WeatherStack API.
+
+## Features
+
+- Fetch current weather data by location.
+- Handles errors and exceptions gracefully.
+- Formats JSON responses for readability.
+
+## Technologies Used
+
+- Java 17
+- Spring Boot 3.x
+- Spring Web (RestTemplate)
+- JSON (org.json)
+- WeatherStack API
+
+### Setup
+
+1. **Clone the repository:** 
+    git clone https://github.com/yourusername/weather-service.git
+    cd weather-service
+    Update API Key:
+Replace the access_key in WeatherService with your WeatherStack API key.
+
+   private static final String WEATHER_STACK_API_URL = "http://api.weatherstack.com/current?access_key=your_api_key_here&query=%s";
+
+Build the project:
+
+bash
+
+mvn clean install
+
+Run the application:
+
+bash
+
+    mvn spring-boot:run
 
 API Endpoints
-1. Get Weather by Coordinates
+Get Weather by Coordinates
 
-    Endpoint: /weather/by-coordinates
+    URL: /weather/get-weather
+
     Method: GET
-    Parameters:
-        coordinates (required): Coordinates in the format latitude,longitude (e.g., 42.3478,-71.0466).
-    Response: Weather data for the specified coordinates.
 
-Example Request:
+    Query Parameters:
+        location (String) - The location name or coordinates (e.g., "Lat 11.39 and Lon 77.67").
 
- ```
+    ###Example Request:
+        GET http://localhost:8080/weather/get-weather?location=Lat 11.39 and Lon 77.67
 
-curl --request GET --url 'http://localhost:8080/weather/by-coordinates?coordinates=42.3478,-71.0466'
+Response:
 
-2. Get Weather by City
-
-    Endpoint: /weather/by-city
-    Method: GET
-    Parameters:
-        city (required): Name of the city (e.g., New York).
-    Response: Weather data for the specified city.
-
-Example Request:
-
- ```
-
-curl --request GET --url 'http://localhost:8080/weather/by-city?city=Chennai'
-
-Setup and Installation
-Prerequisites
-
-    Java 17 or later
-    Maven for building the project
-
-Steps
-
-    Clone the Repository:
-
-    git clone <repository-url>
-
-Navigate to the Project Directory:
-
- ```
-
-cd weather-service
-
-Build the Project:
-
-  mvn clean install
-
-Run the Application:
-
-   mvn spring-boot:run
-
-    The application will start and be accessible at http://localhost:8080.
-
-Configuration
-
-    Tomorrow.io API Key: Replace WpMVxUHIYj4zOmUiGQfNOdTXBnFKGc1o in the WeatherService class with your Tomorrow.io API key.
-    OpenCage API Key: Replace 6639785137fa4c16adc0975c9ac2ea31 in the WeatherService class with your OpenCage API key.
+    Returns formatted JSON containing current weather details.
