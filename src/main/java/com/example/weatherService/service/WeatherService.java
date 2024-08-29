@@ -18,18 +18,14 @@ public class WeatherService {
         String url = String.format(WEATHER_STACK_API_URL, location);
 
         try {
-            // Make the HTTP GET request and get the response as a string
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
             HttpStatusCode statusCode = responseEntity.getStatusCode();
 
-            // Convert HttpStatusCode to HttpStatus
             HttpStatus httpStatus = HttpStatus.resolve(statusCode.value());
 
-            // Check for a successful response
             if (httpStatus == HttpStatus.OK) {
                 String responseBody = responseEntity.getBody();
 
-                // Format the JSON response
                 JSONObject jsonResponse = new JSONObject(responseBody);
                 return jsonResponse.toString(4); // Indent with 4 spaces
 
@@ -38,11 +34,9 @@ public class WeatherService {
             }
 
         } catch (HttpClientErrorException e) {
-            // Handle HTTP client errors (4xx and 5xx status codes)
             return String.format("HTTP Error: %s - %s", e.getStatusCode(), e.getStatusText());
 
         } catch (Exception e) {
-            // Handle other exceptions, such as network errors or JSON parsing errors
             return "Error: " + e.getMessage();
         }
     }
